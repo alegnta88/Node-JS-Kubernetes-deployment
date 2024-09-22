@@ -8,9 +8,9 @@ on:
       - 'feature/*'
 
 env:
-  MONGO_URI = ${{ vars.MONGO_URI }}
-  MONGO_USERNAME = ${{ vars.MONGO_INITDB_ROOT_USERNAME }}
-  MONGO_PASSWORD = ${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
+  MONGO_URI: ${{ vars.MONGO_URI }}
+  MONGO_USERNAME: ${{ vars.MONGO_INITDB_ROOT_USERNAME }}
+  MONGO_PASSWORD: ${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
     
 jobs:
     unit-testing:
