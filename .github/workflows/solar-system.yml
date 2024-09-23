@@ -55,9 +55,10 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build and push Docker image
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
           context: . ./
+          file: . ./Dockerfile
           push: true
           tags: alegnta/node-cicd-app:latest
