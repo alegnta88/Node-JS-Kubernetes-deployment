@@ -11,34 +11,33 @@ env:
   MONGO_URI: 'mongodb+srv://alegnta88:0603t44LXtKFAJVp@cluster0.w38es.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
   MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
-    
-jobs:
 
-  strategy:
+jobs:
+  unit-testing:
+    strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [14, 16, 18]
 
-    unit-testing:
-        name: Unit Testing
-        runs-on: ${{ matrix.os }}
-        steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
+    runs-on: ${{ matrix.os }}
 
-        - name: Setup NodeJS Version
-          uses: actions/setup-node@v3
-          with:
-            node-version: 20
-    
-        - name: Install Dependencies
-          run: npm install
-    
-        - name: Unit Testing
-          run: npm test
-          
-        - name: Archive Test Result
-          uses: actions/upload-artifact@v3
-          with:
-            name: Mocha-Test-Result
-            path: test-results.xml
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup NodeJS Version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Unit Tests
+        run: npm test
+
+      - name: Archive Test Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mocha-Test-Result
+          path: test-results.xml
