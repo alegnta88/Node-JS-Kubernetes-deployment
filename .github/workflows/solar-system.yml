@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - 'feature/*'
+      
 
 env:
   MONGO_URI: 'mongodb+srv://alegnta88:0603t44LXtKFAJVp@cluster0.w38es.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
