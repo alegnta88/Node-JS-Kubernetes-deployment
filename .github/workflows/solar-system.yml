@@ -58,7 +58,6 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v4
         with:
-          context: . ./
-          file: . ./Dockerfile
+          context: .
           push: true
           tags: alegnta/node-cicd-app:latest
